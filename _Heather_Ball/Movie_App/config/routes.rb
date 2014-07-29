@@ -3,6 +3,7 @@ MovieApp::Application.routes.draw do
   root "movies#index" 
   get '/movies' => "movies#index"
   get '/' => "movies#index"
+  get '/new' => "movies#new"
 
   resources :movies
   # The priority is based upon order of creation: first created -> highest priority.
