@@ -29,7 +29,6 @@ class Forecast
 
 		puts "\n"
 		puts "Your forecast for #{@spot_forecast[0]["spot_name"]} on #{@spot_forecast[0]["date"]}:"
-
 		puts "\n"
 
 		@spot_forecast.each do |hour|
@@ -39,9 +38,3 @@ class Forecast
 	end
 
 end
-
-
-	
-
-
-

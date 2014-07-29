@@ -64,13 +64,14 @@ def build_spots(county)
 
 	county.each do |spot|
 	
-	# Create a temporary hash to store the spot_name and spot_id, push the hash to the array
-	# Re-initialize the hash every time the loop is run
-	tmp_spot = Hash.new
-	tmp_spot[:spot_name] = spot["spot_name"]
-	tmp_spot[:spot_id] = spot["spot_id"]
-	@spots << tmp_spot
-	puts "Size of @spots: #{@spots.length}"
+		# Create a temporary hash to store the spot_name and spot_id, push the hash to the array
+		# Re-initialize the hash every time the loop is run
+		tmp_spot = Hash.new
+		tmp_spot[:spot_name] = spot["spot_name"]
+		tmp_spot[:spot_id] = spot["spot_id"]
+		@spots << tmp_spot
+		puts "Size of @spots: #{@spots.length}"
+	
 	end
 
 end
