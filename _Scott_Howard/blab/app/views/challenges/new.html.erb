@@ -1,0 +1,15 @@
+<h1>Create a new challenge</h1>
+<%= form_for @challenge do |f| %>
+	<fieldset>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+<!-- 		<%= check_box_tag(:adult_flag) %>
+		<%= label_tag(:adult_flag, "Adults only?") %>
+		<%= check_box_tag(:private_flag) %>
+		<%= label_tag(:private_flag, "Private?") %>		-->
+	</fieldset>
+	</br>
+	<%= f.submit %>
+<% end %>
+ 
+<h3><%= link_to "Go back to challenge sets", new_game_path %></h3>

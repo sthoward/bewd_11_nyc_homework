@@ -1,0 +1,19 @@
+<h1>This is the challenge: <%= @challenge.title %></h1>
+<h4>Up Votes: <%= @challenge.up_down_vote %> | Down Votes: </h4>
+
+<%= form_for [@challenge, @phrase] do |f| %>
+	<p>
+		<%= f.text_field :text, placeholder: "Add a phrase" %>
+	</p>
+	<%= f.submit %>
+<% end %>
+
+<ul>
+	<% @challenge.phrases.each do |phrase| %>
+	<li><%= phrase.text %></li>
+	<% end %>
+</ul>
+
+<h3><%= link_to "Go back to challenge sets", new_game_path %></h3>
+
+

@@ -1,0 +1,46 @@
+<h1>Start a Game</h1>
+<div class="row">
+	<div class="col-md-8">
+		<%= form_for @game do |f| %>
+			<%= f.label :url, "Custom url: www.blabberingapp.com/" %>
+			<%= f.text_field :url, value: @temp, readonly: true %></br>
+			<b>Challenge:</b>
+			<%= f.select(:challenge_id, options_from_collection_for_select(@challenges, :id, :title, selected = nil)) %></br>
+			<b>Time(hours):</b>
+			<%= f.select :duration, options_for_select([[1,1],[2,2],[3,3],[4,4],[9,9]]) %> </br>
+			<%= f.label :gamepass, "Passcode" %>
+			<%= f.text_field :gamepass, placeholder: "(optional)" %></br></br>
+			
+			<%= f.submit %>
+
+		<% end %>
+	</div><!-- end column -->
+	<div class="col-md-4">
+
+
+	</div><!-- end column -->
+</div><!-- end row -->
+
+<div class="row"> <!-- Display Add New Challenge and Challenges Info -->
+	<h3>Challenges:</h3>
+	<%= link_to new_challenge_path, {style: 'color:#FFFFFF;'} do %>
+	<div class="challenge_tile col-md-3" id="make_challenge">
+			<div class="col-md-3" id="plus_sign">+</div><div class="col-md-9"><h2>New Challenge</h2></div>
+	</div>
+	<% end %>
+	<% @challenges.each do |challenge| %>
+		<details class="challenge_tile col-md-3">
+			<summary>
+				<%= challenge.title %>
+			</summary>
+			<div class="challenge_tile_body">
+				<% challenge.phrases.each do |phrase| %>
+					<li><%= phrase.text %></li>
+				<% end %>
+				<%= link_to "** edit challenge **", edit_challenge_path(challenge) %>
+			</div>
+		</details>
+		<% end %>
+</div>
+
+

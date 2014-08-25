@@ -1,0 +1,5 @@
+<h1><%= @classified.title %> -  <%= "Posted by #{@classified.user.email}" if @classified.user.present?%></h1>
+<p><%= @classified.description%></br>
+	<%= @classified.price %>
+<p><%= link_to "Back to home page", root_path %></p>
+

@@ -1,0 +1,10 @@
+<h2>Game based on challenge:</br> <%= @challenge.title %></h2>
+<div>
+	<h4>Players:</h4>
+	<%= "Game started by: #{@game.user.email}" %>
+	<ul>
+		<% @playersessions.each do |session| %>
+			<li><%= session.user.email %>   |  <%= session.score %></li>
+		<% end %>
+	</ul>
+</div>

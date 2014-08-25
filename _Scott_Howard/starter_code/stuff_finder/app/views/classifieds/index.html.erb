@@ -1,0 +1,6 @@
+<% @classifieds.each do |c| %>
+	<h2><%= "#{c.title} ----- $#{c.price}"%></h2>
+	</br>
+	<%= "#{c.description}" %>
+	<hr/>
+<% end %>

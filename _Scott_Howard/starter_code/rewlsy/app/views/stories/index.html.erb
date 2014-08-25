@@ -1,0 +1,7 @@
+<h1> Welcome to Rewlsy </h1> 
+
+  <ul>
+    <% @stories.each do |story| %>
+      <li><%= link_to "[#{story.category}] #{story.title} (#{story.upvotes})", story_path(story)%></li>
+    <%end%>
+  </ul>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BlabberingApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+
+  <%= csrf_meta_tags %>
+
+	<!-- twitter script -->
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<!-- end twitter script -->
+
+
+	<%= render 'layouts/shim' %>
+
+	<% if yield(:title) == "Game On" %>
+		<!-- <meta http-equiv="refresh" content="5" /> -->
+	<% end %>
+
+</head>
+<body>
+
+<%= render 'layouts/header'%>
+
+
+<div class="container">
+	<% if notice %>
+	  <div class="alert alert-success alert-dismissible" role="alert">
+	  	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	  	<p><%= notice %></p>
+	  </div>
+	<% end %>
+	<% if alert %>
+	   <div class="alert alert-danger alert-dismissible" role="alert">
+	  	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	  	<p><%= alert %></p>
+	  </div>
+	<% end %>
+  
+  <%= yield %>
+	<%= render 'layouts/footer'%>
+  <%= debug(params) if Rails.env.development? %>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<h1>preview</h2>
+
+	<%= render 'games/gameoverview' %>
+
+	<div>
+	<% if !current_player? %>
+		<%= form_tag('/games/verify_new_player', method: "get") do %>
+			<%= hidden_field_tag(:game, @game.id) %>
+			<%= label_tag :password %>
+      <%= text_field_tag :password %>
+		<%= submit_tag("Join") %>
+		<% end %>
+		<% else %>
+		Game on!
+	<% end %>
+
+</div>

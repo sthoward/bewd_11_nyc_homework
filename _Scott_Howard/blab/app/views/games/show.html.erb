@@ -1,0 +1,112 @@
+<% provide(:title, 'Game On') %>
+
+<div class="row">
+	<div class="col-md-8">
+		<%= render 'games/gameoverview' %>
+		<div>
+			<% if !current_player? %>
+				<h2><%= link_to "Join this game", edit_game_path %></h2>
+			<% end %>
+		</div>
+		<div>
+			<h4>Challenge phrases:</h4>
+			<% if !current_player? %>
+				<ul>
+				<% @phrases.each do |phrase| %>
+					<li><%= phrase.text %></li>	
+				<% end %>
+				</ul>
+			<% else %>
+				<% if @game.active_flag %>
+					<%= form_for @playedphrase do |f| %>
+						<%= f.hidden_field(:playersession, value: @playersession.id) %>
+						<span id="remaining_phrases_group">
+							<% @remainingphrases.each do |phrase| %>
+								<span class="phrase_block remaining_phrase">
+									<%= f.radio_button(:phrase, phrase.id) %>
+									<%= f.label(:phrase,"#{phrase.text}") %>
+								</span>
+							<% end %>
+						</span>
+						<span id="played_phrases_group">
+							<% @playedphrases.each do |phrase| %>
+								<span class="phrase_block played_phrase">
+									<%= f.radio_button(:phrase, phrase.id, disabled: true) %>
+									<%= f.label(:phrase,"#{phrase.text}") %>
+								</span>
+							<% end %>
+						</span>
+						<%= submit_tag %>
+					<% end %>
+				<% else %>
+					<%= form_for @playedphrase do |f| %>
+					<%= f.hidden_field(:playersession, value: @playersession.id) %>
+					<span id="remaining_phrases_group">
+						<% @remainingphrases.each do |phrase| %>
+							<span class="phrase_block remaining_phrase">
+								<%= f.radio_button(:phrase, phrase.id,disabled: true) %>
+								<%= f.label(:phrase,"#{phrase.text}") %>
+							</span>
+						<% end %>
+					</span>
+					<span id="played_phrases_group">
+						<% @playedphrases.each do |phrase| %>
+							<span class="phrase_block played_phrase">
+								<%= f.radio_button(:phrase, phrase.id, disabled: true) %>
+								<%= f.label(:phrase,"#{phrase.text}") %>
+							</span>
+						<% end %>
+					</span>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+
+
+		<!-- <div>
+			<h4>Phrases to play:</h4>
+			<ul>
+				<% @phrases.each do |phrase| %>
+					<li><%= phrase.text %></li>	
+				<% end %>
+			</ul>
+
+			<h4>Remaining phrases:</h4>
+			<ul>
+				<% @remainingphrases.each do |phrase| %>
+				<li><%= phrase.text %></li>
+				<% end %>
+
+			</ul>
+
+
+			<h4>Played phrases (objects):</h4>
+			<ul>
+				<% @playedphrases.each do |played| %>
+					<li><%= played.text %></li>	
+				<% end %>
+			</ul>
+		</div> -->
+	</div> <!-- end div main play area column -->
+
+	<div class="col-md-4" id="game_chat_bar">
+		<div class="row" id="game_info">
+			<%= "Link to game: www.blabberingapp.com/#{@game.url}" %></br>
+			<% if @game.active_flag %>
+				Send to friend:
+				</br>
+				<%= "Remaining time: #{distance_of_time_in_words(@remainingtime)}" %></br>
+			<% else %>
+				<span id="game_over">GAME OVER</span>
+			<% end %>
+		</div>
+		<hr/>
+		<div id="chat_area">
+			Chat area
+		</div>
+	</div> <!-- end div chat area column -->
+</div> <!-- end div main row -->
+
+
+
+

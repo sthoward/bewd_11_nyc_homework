@@ -1,0 +1,25 @@
+<h1>Edit challenge: <%= @challenge.title %></h1>
+<h4>Up Votes: <%= @challenge.up_down_vote %> | Down Votes: </h4>
+
+<%= form_for [@challenge, @phrase] do |f| %>
+	<p>
+		<%= f.text_field :text, placeholder: "Add a phrase" %>
+	</p>
+	<%= f.submit %>
+<% end %>
+
+	<div class="authentications">
+    <% @challenge.phrases.each do |phrase| %>
+      <div class="authentication">
+        <div class="provider"><%= phrase.text %></div>
+        <%= link_to "X", [@phrase.challenge, phrase], :confirm => "Are you sure?", :method => :delete, class: "remove" %>
+        
+      </div>
+    <% end %>
+    <div class="clearfix"></br></div>
+  </div>
+
+
+<h3><%= link_to "Go back to challenge sets", new_game_path %></h3>
+
+

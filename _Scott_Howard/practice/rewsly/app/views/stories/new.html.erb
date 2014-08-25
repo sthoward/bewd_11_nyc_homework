@@ -1,0 +1,10 @@
+<h1>Add a new story</h1>
+<% if @story.errors.any? %>
+  <h2>The following errors prevented your story from saving:</h2>
+  <ul>
+  <% @story.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+<%= render 'form'%>
